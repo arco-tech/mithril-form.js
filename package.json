@@ -1,6 +1,6 @@
 {
   "name": "@arco-tech/mithril-form",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Form components for Mithril.js",
   "main": "lib/index.js",
   "dependencies": {
