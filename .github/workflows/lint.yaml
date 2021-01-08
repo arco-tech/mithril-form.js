@@ -1,0 +1,36 @@
+on:
+  push:
+    branches:
+      - develop
+      - main
+
+jobs:
+  checks:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+
+      - run: npm install
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Notify Lint Success
+        uses: insprac/discord-notification-action@master
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          title: "@arco-tech/mithril-form - Lint Success"
+          message: "${{ github.event.head_commit.message }}"
+          color: "#75c22d"
+
+      - name: Notify Lint Error
+        if: ${{ failure() }}
+        uses: insprac/discord-notification-action@master
+        with:
+          webhook-url: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          title: "@arco-tech/mithril-form - Lint Failure"
+          message: "${{ github.event.head_commit.message }}"
+          color: "#db3540"
