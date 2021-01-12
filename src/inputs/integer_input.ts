@@ -47,7 +47,7 @@ function onInput(
   name: string, 
   event: InputEvent,
 ): void {
-  let value: any = event.target.value
+  let value: any = (event.target as HTMLInputElement).value
 
   if (!value && value !== 0) {
     state.value = null
@@ -59,7 +59,7 @@ function onInput(
 
     let filteredValue = ""
 
-    value.split("").forEach((character) => {
+    value.split("").forEach((character: string) => {
       if (validCharacters.indexOf(character) !== -1) {
         filteredValue += character
       }
