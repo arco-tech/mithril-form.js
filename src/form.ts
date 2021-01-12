@@ -21,6 +21,9 @@ export const Form: m.Component<Attrs> = {
       },
     }, [
       changeset.hasAnyErrors() && m(ErrorMessage, { error: errorMessage }),
+      changeset.hasErrorMessage() && m(ErrorMessage, {
+        error: changeset.getErrorMessage(),
+      }),
       children,
       m("input", { type: "submit", style: "display: none" }),
     ])
