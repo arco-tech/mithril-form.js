@@ -1,4 +1,5 @@
 import * as m from "mithril"
+import { sblk } from "@arco-tech/bem"
 import { Changeset } from "@arco-tech/changeset"
 
 interface Option {
@@ -21,18 +22,13 @@ export const Radio: m.Component<Attrs> = {
       options.map(({ label, value }) => {
         const active = currentValue === value
 
-        return m(".form__radio-input", {
-          class: active ? "form__radio-input--active" : "",
+        return m(sblk("form__radio-input", active && "active"), {
           onclick: () => {
             changeset.setChange(name, value)
           },
         }, [
-          m(".form__radio-input__button", {
-            class: active ? "form__radio-input__button--active" : "",
-          }),
-          m(".form__radio-input__label", {
-            class: active ? "form__radio-input__label--active" : "",
-          }, label),
+          m(sblk("form__radio-input__button", active && "active")),
+          m(sblk("form__radio-input__label", active && "active"), label),
         ])
       })
     ])
