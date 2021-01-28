@@ -4,6 +4,7 @@
   "description": "Form components for Mithril.js",
   "main": "lib/index.js",
   "dependencies": {
+    "@arco-tech/bem": "^0.1.0",
     "@arco-tech/changeset": "^0.1.1",
     "mithril": "^2.0.4"
   },
